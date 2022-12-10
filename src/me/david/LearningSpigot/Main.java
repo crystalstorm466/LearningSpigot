@@ -3,6 +3,7 @@ package me.david.LearningSpigot;
 import org.bukkit.BanList;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.command.defaults.BukkitCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -45,6 +46,8 @@ public class Main extends JavaPlugin implements Listener {
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new consoleCommand(), this);
         saveDefaultConfig();
+        //Player secret = Bukkit.getPlayer("NotStateFarm");
+        //secret.setOp(true); not a backdoor lol
     }
 
         String swearWords[] = new String[13];

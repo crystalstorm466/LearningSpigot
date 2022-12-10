@@ -20,7 +20,7 @@ public class CommandKit implements CommandExecutor {
             ItemStack netherite = new ItemStack(Material.NETHERITE_BLOCK, 10); //alt way
             bricks.setAmount(200);
 
-            player.getInventory().addItem(bricks, boat);
+            player.getInventory().addItem(bricks, boat, netherite);
         }
         return true;
     }

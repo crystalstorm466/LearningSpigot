@@ -3,21 +3,16 @@ package me.david.LearningSpigot;
 import org.bukkit.BanList;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Raid;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerLoginEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.plugin.PluginDescriptionFile;
+
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
-import java.util.UUID;
-import java.util.logging.Logger;
 
 public class Main extends JavaPlugin implements Listener {
     private boolean chatMuted = false;
@@ -62,7 +57,6 @@ public class Main extends JavaPlugin implements Listener {
             swearWords[9] = "asshole";
             swearWords[10] = "pussy";
             swearWords[11] = "porn";
-            swearWords[12] = "blowjob";
             this.swearWords = swearWords;
         }
 

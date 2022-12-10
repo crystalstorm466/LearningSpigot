@@ -43,6 +43,7 @@ public class Main extends JavaPlugin implements Listener {
         this.getCommand("fly").setExecutor(new commandFly());
         this.getCommand("mute").setExecutor(new commandMute());
         this.getCommand("unmute").setExecutor(new commandMute());
+        this.getCommand("invsee").setExecutor(new commandInvSee());
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new consoleCommand(), this);
         saveDefaultConfig();

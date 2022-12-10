@@ -25,3 +25,7 @@ commands:
     description: allows self to fly
     usage: /fly
     permission: LearningSpigot.fly
+  invsee:
+    description: View the inventory of another player.
+    usage: /invsee
+    permission: LearningSpigot.invsee

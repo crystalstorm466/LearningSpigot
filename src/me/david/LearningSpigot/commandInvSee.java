@@ -1,6 +1,7 @@
 package me.david.LearningSpigot;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -34,7 +35,7 @@ public class commandInvSee implements CommandExecutor {
     protected ItemStack createGuiItem(inv) {
         ItemStack item = null;
         for (int c = 0; c < inv.getSize(); c++) {
-            item = new ItemStack(inv.getItem(c), 1);
+            item = new ItemStack(inv.getItem(c).getType(), 1);
             final ItemMeta meta = item.getItemMeta();
 
             // Set the name of the item
@@ -54,15 +55,20 @@ public class commandInvSee implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
+            if (!(args[0] == 0)) {
+                if (player.hasPermission("LearningSpigot.invsee")) {
+                    PlayerInventory inventory = Bukkit.getPlayer(args[0]).getInventory();
 
-            if (player.hasPermission("LearningSpigot.invsee")) {
-                PlayerInventory inventory = player.getInventory();
-
-                for (int i = 0; i < inventory.getSize(); i++) {
-                    initalizeItems(inventory);
+                    for (int i = 0; i < inventory.getSize(); i++) {
+                        initalizeItems(inventory);
+                    }
+                    openInventory(player);
                 }
-                openInventory(player);
+            } else {
+                player.sendMessage(ChatColor.RED + "You need to provide a player!");
             }
+
+
         }
     }
 }

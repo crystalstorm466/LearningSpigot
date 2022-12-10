@@ -15,18 +15,19 @@ import static org.bukkit.entity.Player.*;
 
 public class commandMute implements CommandExecutor {
 
-    Main mute = new Main();
+    public static boolean mute;
+    private Main plugin;
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("mute")) {
             if (args.length == 0) {
-                if (sender instanceof Player) {
                     Player player = (Player) sender;
                     if (player.hasPermission("LearningSpigot.mute")) {
-                        if(mute.isChatMuted()) {
+                        if(plugin.isChatMuted()) {
                             player.sendMessage("Chat is already muted!");
                         } else {
-                            mute.setChatMuted(true);
+                            plugin.setChatMuted(true);
                             Bukkit.getServer().broadcastMessage(ChatColor.GOLD + player.getName() + " has muted the server!");
                         }
 
@@ -37,14 +38,13 @@ public class commandMute implements CommandExecutor {
 
                 }
             }
-        }
         if (command.getName().equalsIgnoreCase("unmute")) {
             if (args.length == 0) {
                 if (sender instanceof Player) {
                     Player player = (Player) sender;
                     if (player.hasPermission("LearningSpigot.mute")) {
-                        if (mute.isChatMuted()) {
-                            mute.setChatMuted(false);
+                        if (plugin.isChatMuted()) {
+                            plugin.setChatMuted(false);
                             Bukkit.getServer().broadcastMessage(ChatColor.GREEN + player.getName() + " has unmuted the server!");
                         } else {
                             player.sendMessage("Chat isn't muted!");

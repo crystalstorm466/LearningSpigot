@@ -3,16 +3,16 @@ version: 1.0 # the plugin's version
 author: David Holland
 load: STARTUP
 main: me.david.LearningSpigot.Main
-api-version: 1.19.1-R0.1-20220804.104059 # the version of the API you want to use, required starting with 1.13
+api-version: 1.19 # the version of the API you want to use, required starting with 1.13
 commands:
   kit:
     description: adds a kit into the game
     usage: /kit
-    permission: LearningSpigot.everyone
+    permission: LearningSpigot.kit
   kick:
     description: kicks player
     usage: /kick
-    permission: LearningSpigot.everyone
+    permission: LearningSpigot.kick
   mute:
     description: mutes the server
     usage: /mute

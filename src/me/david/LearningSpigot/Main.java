@@ -8,6 +8,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+import org.bukkit.event.server.ServerCommandEvent;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.time.Duration;
@@ -15,7 +17,7 @@ import java.time.Instant;
 import java.util.Date;
 
 public class Main extends JavaPlugin implements Listener {
-    private boolean chatMuted = false;
+    private volatile boolean chatMuted = false;
 
     public boolean isChatMuted() {
         return chatMuted;
@@ -40,6 +42,8 @@ public class Main extends JavaPlugin implements Listener {
         this.getCommand("fly").setExecutor(new commandFly());
         this.getCommand("mute").setExecutor(new commandMute());
         this.getCommand("unmute").setExecutor(new commandMute());
+        PluginManager pm = Bukkit.getPluginManager();
+        pm.registerEvents(new consoleCommand(), this);
         saveDefaultConfig();
     }
 
@@ -77,12 +81,12 @@ public class Main extends JavaPlugin implements Listener {
 
                         Bukkit.getServer().broadcastMessage(ChatColor.RED + player.getName() + " tried to say " +
                                 "a swear word in chat and has ruined the chat for everyone.");
-                        chatMuted = true;
+                        setChatMuted(true);
                         break;
                     }
                 }
             }
-            if (chatMuted) {
+            if (isChatMuted()) {
                 event.getPlayer().sendMessage(ChatColor.RED + "The chat is currently muted.");
                 event.setCancelled(true);
             } else {

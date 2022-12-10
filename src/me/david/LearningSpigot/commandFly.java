@@ -15,8 +15,9 @@ public class commandFly implements CommandExecutor {
             // Check if the player has the permission to use the /fly command
             if (player.hasPermission("LearningSpigot.fly")) {
                 // Toggle the player's flying state
-                player.setAllowFlight(!player.getAllowFlight());
 
+                player.setAllowFlight(true);
+                player.setFlying(true);
                 // Send a message to the player
                 player.sendMessage("Flying mode toggled!");
             } else {

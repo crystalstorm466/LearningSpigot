@@ -2,10 +2,9 @@
   <artifact name="SpigotPlugin:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/SpigotPlugin_jar</output-path>
     <root id="root">
-      <element id="archive" name="SpigotPlugin.jar">
+      <element id="archive" name="LearningSpigot.jar">
         <element id="module-output" name="SpigotPlugin" />
       </element>
-      <element id="file-copy" path="$USER_HOME$/Downloads/spigot-api-1.19.1-R0.1-20220804.104059-10-shaded.jar" />
     </root>
   </artifact>
 </component>

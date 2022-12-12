@@ -13,16 +13,16 @@ import java.util.function.Consumer;
 public class updatesChecker {
 
     private final JavaPlugin plugin;
-    private final int resourceId;
+    private final int FINALID;
 
-    public updatesChecker (JavaPlugin plugin, int resourceId) {
+    public updatesChecker (JavaPlugin plugin, int FINALID) {
         this.plugin = plugin;
-        this.resourceId = resourceId;
+        this.FINALID = FINALID;
     }
 
     public void getVersion(final Consumer<String> consumer) { //todo this won't do anything until I upload my plugin
         Bukkit.getScheduler().runTaskAsynchronously(this.plugin, () -> {
-            try (InputStream inputStream = new URL("https://api.spigotmc.org/legacy/update.php?resource=" + this.resourceId).openStream(); Scanner scanner = new Scanner(inputStream)) {
+            try (InputStream inputStream = new URL("https://api.spigotmc.org/legacy/update.php?resource=" + this.FINALID).openStream(); Scanner scanner = new Scanner(inputStream)) {
                 if (scanner.hasNext()) {
                     consumer.accept(scanner.next());
         }

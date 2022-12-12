@@ -17,10 +17,6 @@ commands:
     description: mutes the server
     usage: /mute
     permission: LearningSpigot.mute
-  unmute:
-    description: unmutes the server
-    usage: /unmute
-    permission: LearningSpigot.mute
   fly:
     description: allows self to fly
     usage: /fly
@@ -29,3 +25,6 @@ commands:
     description: View the inventory of another player.
     usage: /invsee
     permission: LearningSpigot.invsee
+  ping:
+    description: Shows your ping to the server. Add a player's name to view thier ping.
+    permission: LearningSpigot.everyone

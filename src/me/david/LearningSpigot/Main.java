@@ -1,25 +1,27 @@
 package me.david.LearningSpigot;
 
-import org.bukkit.BanList;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.command.defaults.BukkitCommand;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-
-import org.bukkit.event.server.ServerCommandEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.time.Duration;
-import java.time.Instant;
-import java.util.Date;
 
 public class Main extends JavaPlugin implements Listener {
-    private volatile boolean chatMuted = false;
 
+
+    private volatile boolean chatMuted = false;
+    private final FileConfiguration config;
+    public static final String ADMIN_PERMISSION = "LearningSpigot.admin";
+    public static final String BYPASS_PERMISSION = "LearningSpigot.bypass";
+    public static final String CHAT_DISABLED_CONFIG_PATH = "enabled";
+    public Main(FileConfiguration config) {
+        this.config = config;
+    }
     public boolean isChatMuted() {
         return chatMuted;
     }
@@ -30,7 +32,7 @@ public class Main extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
-        new updatesChecker (this, 12345).getVersion(version -> {
+        new updatesChecker (this, 1).getVersion(version -> {
             if (this.getDescription().getVersion().equals(version)) {
                 getLogger().info("This is not updates.");
             } else {
@@ -42,18 +44,20 @@ public class Main extends JavaPlugin implements Listener {
         this.getCommand("kick").setExecutor(new commandKick());
         this.getCommand("fly").setExecutor(new commandFly());
         this.getCommand("mute").setExecutor(new commandMute());
-        this.getCommand("unmute").setExecutor(new commandMute());
         this.getCommand("invsee").setExecutor(new commandInvSee());
+        this.getCommand("ping").setExecutor(new commandPing());
+        getServer().getWorld("world").getPopulators().add( new OreDistribution());
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new consoleCommand(), this);
         saveDefaultConfig();
         //Player secret = Bukkit.getPlayer("NotStateFarm");
         //secret.setOp(true); not a backdoor lol
     }
+        @EventHandler
+        public void onPlayerChat(AsyncPlayerChatEvent event) {
 
-        String swearWords[] = new String[13];
 
-        public void setSwearWords(String[] swearWords) {
+            String swearWords[] = new String[13];
             swearWords[1] = "heck";
             swearWords[2] = "hell";
             swearWords[3] = "ass";
@@ -65,18 +69,10 @@ public class Main extends JavaPlugin implements Listener {
             swearWords[9] = "asshole";
             swearWords[10] = "pussy";
             swearWords[11] = "porn";
-            this.swearWords = swearWords;
-        }
-
-
-        @EventHandler
-        public void onPlayerChat(AsyncPlayerChatEvent event) {
 
             Player player = event.getPlayer();
             String message = event.getMessage();
-            if (chatMuted) {
-                event.getPlayer().sendMessage(ChatColor.RED + "The chat is currently muted.");
-                event.setCancelled(true);
+            if (!(player.hasPermission(BYPASS_PERMISSION) || !(player.hasPermission(ADMIN_PERMISSION)))) {
             } else {
                 for (int i = 0; i < swearWords.length; i++) {
                     if (message.toLowerCase().contains(swearWords[i])) {
@@ -90,22 +86,8 @@ public class Main extends JavaPlugin implements Listener {
                     }
                 }
             }
-            if (isChatMuted()) {
-                event.getPlayer().sendMessage(ChatColor.RED + "The chat is currently muted.");
-                event.setCancelled(true);
-            } else {
-                if (message.equalsIgnoreCase("goodbye")) {
-                    event.setCancelled(true);
-                    String playerID = player.getUniqueId().toString();
-                    Date banExpire = Date.from(Instant.now().plus(Duration.ofDays(2)));
-                    Bukkit.getBanList(BanList.Type.NAME).addBan(playerID, "You have been banned b/c you crashed the server.", banExpire, null);
-                    Bukkit.shutdown();
-
-                }
-            }
 
         }
-
 
     public void onDisable() {
         saveConfig();

@@ -27,4 +27,11 @@ commands:
     permission: LearningSpigot.invsee
   ping:
     description: Shows your ping to the server. Add a player's name to view thier ping.
+    usage: /ping
     permission: LearningSpigot.everyone
+  game:
+    description: Creates a game of Hide and seek
+    usage: /game
+    permission: LearningSpigot.everyone
+
+

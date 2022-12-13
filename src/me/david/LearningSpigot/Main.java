@@ -2,7 +2,9 @@ package me.david.LearningSpigot;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
@@ -10,6 +12,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.lang.reflect.Field;
 
 
 public class Main extends JavaPlugin implements Listener {
@@ -42,6 +46,7 @@ public class Main extends JavaPlugin implements Listener {
         this.getCommand("mute").setExecutor(new commandMute());
         this.getCommand("invsee").setExecutor(new commandInvSee());
         this.getCommand("ping").setExecutor(new commandPing());
+        this.getCommand("game").setExecutor(new commandGame());
         getServer().getWorld("world").getPopulators().add(new OreDistribution());
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new consoleCommand(), this);
@@ -50,7 +55,6 @@ public class Main extends JavaPlugin implements Listener {
         //Player secret = Bukkit.getPlayer("NotStateFarm");
         //secret.setOp(true); not a backdoor lol
     }
-
 
 
     public void onDisable() {

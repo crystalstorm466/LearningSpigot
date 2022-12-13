@@ -12,6 +12,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import java.util.Arrays;
+import java.util.Random;
 
 public class commandGame implements CommandExecutor {
 
@@ -19,13 +20,13 @@ public class commandGame implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("game")) {
             if (sender instanceof Player) {
-               if (args.length == 2) {
-                   int psuedoTimer = 10;
+               if (args.length == 3) {
+                   boolean game = true;
                    Player player = (Player) sender;
                    Player runner = Bukkit.getPlayer(args[0]);
                    Player hunter1 = Bukkit.getPlayer(args[1]);
-                   Player hunter2 = Bukkit.getPlayer(args[1]);
-                   while(psuedoTimer > 1) {
+                   Player hunter2 = Bukkit.getPlayer(args[2]);
+                   while(game) {
 
                        ItemStack helmet = new ItemStack(Material.IRON_HELMET);
                        ItemStack chestplate = new ItemStack(Material.IRON_CHESTPLATE);
@@ -60,8 +61,20 @@ public class commandGame implements CommandExecutor {
                        Bukkit.broadcastMessage(ChatColor.GOLD + "[GAME] The seeker is now glowing!");
                        runner.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 255, 20, false));
 
+
+
+                       Random random = new Random();
+                       if (random.nextInt(10) >= 6) {
+                           hunter1.getInventory().clear();
+                           hunter2.getInventory().clear();
+                           Bukkit.broadcastMessage(ChatColor.DARK_PURPLE + "[GAME] The Hunters have lost items!");
+                       } else {
+                           runner.getInventory().clear();
+                           Bukkit.broadcastMessage(ChatColor.DARK_PURPLE + "[GAME] The Seeker have lost items!");
+
+                       }
                        if (runner.getHealth() == 0) {
-                           psuedoTimer = 0;
+                           game = false;
                            runner.getWorld().playSound(runner.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 2F, 0.1F);
 
                            Bukkit.broadcastMessage(ChatColor.GOLD + "[GAME] The Hunters: " + hunter1.getName() +", " + hunter2.getName() +
@@ -82,7 +95,7 @@ public class commandGame implements CommandExecutor {
                            hunter2.getInventory().addItem(award);
                            return true;
                        }
-                       psuedoTimer--;
+
                    }
                    runner.getWorld().playSound(runner.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 2F, 0.1F);
                    Bukkit.broadcastMessage(ChatColor.DARK_PURPLE + "[GAME] The Seeker: " + runner.getName()

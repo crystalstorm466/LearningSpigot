@@ -29,18 +29,19 @@ public class commandInvSee implements CommandExecutor {
                     }
                     openInventory(player);
                 }*/
-                        Player target = Bukkit.getPlayer(args[1]);
+                        Player target = Bukkit.getPlayer(args[0]);
                         player.openInventory(target.getInventory());
                         return true;
                     } else {
                         player.sendMessage(ChatColor.RED + "You don't have permission to use this command!");
                     }
                 } else {
-                    player.sendMessage(ChatColor.RED + "You need to provide a player!");
+                    player.sendMessage(ChatColor.RED + "[Learning Spigot] You need to provide a player!");
+                    return true;
                 }
             }
         }
-        return false;
+        return true;
     }
 
 }

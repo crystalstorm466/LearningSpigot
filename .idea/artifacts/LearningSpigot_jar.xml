@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact name="SpigotPlugin:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/SpigotPlugin_jar</output-path>
+  <artifact name="LearningSpigot:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/LearningSpigot_jar</output-path>
     <root id="root">
       <element id="archive" name="LearningSpigot.jar">
         <element id="module-output" name="SpigotPlugin" />

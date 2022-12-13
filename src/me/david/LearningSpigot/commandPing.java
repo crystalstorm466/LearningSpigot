@@ -7,21 +7,31 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.Objects;
+
 public class commandPing implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String args[]) {
         if (command.getName().equalsIgnoreCase("ping")) {
-            if (args[1] == " " ) {
-                Player player = (Player) sender;
-                player.sendMessage(ChatColor.GREEN + "The player's ping is " + Bukkit.getPlayer(args[1]).getPing());
-                return true;
+            if (sender instanceof  Player) {
+                if (args.length == 0) {
+                    Player player = (Player) sender;
+                    String playerName = player.getName();
+                    player.sendMessage(ChatColor.GREEN + "Your ping is " + Bukkit.getPlayer(playerName).getPing());
+                    return true;
+                } else if (args.length >= 1) {
+                    Player player = (Player) sender;
+                    String playerName = Bukkit.getPlayer(args[0]).getName();
+                    player.sendMessage(ChatColor.GREEN + playerName + "'s ping is " + Bukkit.getPlayer(playerName).getPing());
+                    return true;
+                }
             } else {
-                Player player = (Player) sender;
-                player.sendMessage(ChatColor.GREEN + "Pong! " + Bukkit.getPlayer(String.valueOf(player)).getPing());
+                Bukkit.getLogger().info("[Learning Spigot] You must run this command as a player.");
                 return true;
-            }
 
+
+            }
         }
         return false;
     }

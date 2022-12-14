@@ -21,11 +21,11 @@ public class commandFeed implements CommandExecutor {
                         assert target != null;
                         target.setFoodLevel(20);
                         target.setSaturation(5F);
-                        target.sendMessage(ChatColor.GREEN + "You have been feed!");
+                        target.sendMessage(ChatColor.GREEN + "You have been fed!");
                     } else {
                         player.setFoodLevel(20);
                         player.setSaturation(5F);
-                        player.sendMessage(ChatColor.GREEN + "You have been feed!");
+                        player.sendMessage(ChatColor.GREEN + "You have been fed!");
                     }
                 }
 

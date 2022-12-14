@@ -6,8 +6,6 @@ import org.bukkit.TreeType;
 import org.bukkit.World;
 import org.bukkit.generator.BlockPopulator;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 
 public class TreePopulator extends BlockPopulator {
@@ -26,9 +24,4 @@ public class TreePopulator extends BlockPopulator {
             }
         }
     }
-    public List<BlockPopulator> getDefaultPopulators(World world) {
-        return Arrays.asList((BlockPopulator) new TreePopulator());
-    }
-
-
 }

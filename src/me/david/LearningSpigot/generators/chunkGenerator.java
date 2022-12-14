@@ -22,7 +22,7 @@ public class chunkGenerator extends ChunkGenerator {
         for (int x = 0; x < 16; x++) {
             for (int z = 0; z < 16; z++) {
                 currentHeight = (int) ((generator.noise(chunkX * 16 + x, chunkZ * 16 + z, 0.5D, 0.5D, true) + 1) * 15D + 50D);
-                chunk.setBlock(x, currentHeight, z, Material.GRASS_BLOCK);
+                chunk.setBlock(x, currentHeight, z, Material.NETHER_GOLD_ORE);
                 chunk.setBlock(x, currentHeight - 1, z, Material.DIRT);
                 for (int i = currentHeight - 2; i > 0; i--) {
                     chunk.setBlock(x, i, z, Material.STONE);
@@ -36,5 +36,10 @@ public class chunkGenerator extends ChunkGenerator {
         return chunk;
     }
 
+    @Override
+    public List<BlockPopulator> getDefaultPopulators(World world) {
+        return Arrays.asList(new TreePopulator());
+    }
 
 }
+

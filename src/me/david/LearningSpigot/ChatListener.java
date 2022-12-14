@@ -8,9 +8,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 public class ChatListener implements Listener {
-    private Main Plugin;
+    private LearningSpigot Plugin;
 
-    public ChatListener(Main plugin) {
+    public ChatListener(LearningSpigot plugin) {
         this.Plugin = plugin;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
@@ -18,7 +18,7 @@ public class ChatListener implements Listener {
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent event) {
 
-        final Main plugin = new Main();
+        final LearningSpigot plugin = new LearningSpigot();
         Bukkit.getServer().getPluginManager().registerEvents(this, plugin);
 
         String swearWords[] = new String[13];

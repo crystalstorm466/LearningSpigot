@@ -53,11 +53,10 @@ public class commandGame implements CommandExecutor {
                        hunter2.getInventory().addItem(helmet, chestplate, leggins, feet);
 
                        try {
-                           Thread.sleep(10000);
-                       } catch (InterruptedException e) {
-                           throw new RuntimeException(e);
+                           Thread.sleep(20 * 1000);
+                       } catch (InterruptedException ie) {
+                           Thread.currentThread().interrupt();
                        }
-
                        Bukkit.broadcastMessage(ChatColor.GOLD + "[GAME] The seeker is now glowing!");
                        runner.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 255, 20, false));
 

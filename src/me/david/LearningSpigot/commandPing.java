@@ -18,12 +18,12 @@ public class commandPing implements CommandExecutor {
                 if (args.length == 0) {
                     Player player = (Player) sender;
                     String playerName = player.getName();
-                    player.sendMessage(ChatColor.GREEN + "Your ping is " + Bukkit.getPlayer(playerName).getPing());
+                    player.sendMessage(ChatColor.GREEN + "[Learning Spigot ] Your ping is " + Bukkit.getPlayer(playerName).getPing());
                     return true;
-                } else if (args.length >= 1) {
+                } else if (args.length == 1) {
                     Player player = (Player) sender;
                     String playerName = Bukkit.getPlayer(args[0]).getName();
-                    player.sendMessage(ChatColor.GREEN + playerName + "'s ping is " + Bukkit.getPlayer(playerName).getPing());
+                    player.sendMessage(ChatColor.GREEN + "[Learning Spigot] " + playerName + "'s ping is " + Bukkit.getPlayer(playerName).getPing());
                     return true;
                 }
             } else {

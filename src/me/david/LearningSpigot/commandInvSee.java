@@ -30,6 +30,7 @@ public class commandInvSee implements CommandExecutor {
                     openInventory(player);
                 }*/
                         Player target = Bukkit.getPlayer(args[0]);
+                        assert target != null;
                         player.openInventory(target.getInventory());
                         return true;
                     } else {

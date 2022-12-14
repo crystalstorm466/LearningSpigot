@@ -2,6 +2,7 @@ package me.david.LearningSpigot;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -32,14 +33,25 @@ public class CommandKit implements CommandExecutor {
             ItemMeta awardData = award.getItemMeta();
             awardData.addItemFlags(ItemFlag.HIDE_ENCHANTS);
             String loreList[] = new String[3];
-            loreList[0] = (ChatColor.GOLD + "Winner of the Hide and Seek Competition");
-            loreList[1] = (ChatColor.GOLD + "Awarded to: " + player.getName() + " who won as a Seeker.");
+            loreList[0] = (ChatColor.GOLD + "Founder's Item: Learning Spigot");
+            loreList[1] = (ChatColor.GOLD + "Awarded to: Evangeline_Samos who developed this plugin.");
             loreList[2] = (ChatColor.GOLD + "This award is highly prestigious\n only a select few has the honor of receiving it.");
             awardData.setLore(Arrays.asList(loreList));
-            awardData.setDisplayName( ChatColor.RED + "Hide and Seek Trophy - Seeker - " + player.getName());
+            awardData.setDisplayName( ChatColor.RED + "Plugin Development - Learning Spigot - " + player.getName());
             award.setItemMeta(awardData);
 
             player.getInventory().addItem(award);
+
+            ItemStack weapon = new ItemStack(Material.STICK);
+            weapon.addUnsafeEnchantment(Enchantment.KNOCKBACK, 10);
+            ItemMeta weaponData = weapon.getItemMeta();
+            String loreListWeapon[] = new String[3];
+            loreListWeapon[0] = (ChatColor.DARK_PURPLE + "Weapon of Back de Knock");
+            loreListWeapon[1] = (ChatColor.DARK_GREEN + "Can knockback players a great distance.");
+            weaponData.setLore(Arrays.asList(loreListWeapon));
+            weaponData.setDisplayName(ChatColor.GOLD + "Plugin Development - Learning Spigot - Knockback Weapon");
+            weapon.setItemMeta(weaponData);
+            player.getInventory().addItem(weapon);
         }
         return true;
     }

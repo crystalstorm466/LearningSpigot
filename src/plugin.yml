@@ -2,7 +2,7 @@ name: LearningSpigot # the plugins name as it should appear in the plugin list /
 version: 1.0 # the plugin's version
 author: David Holland
 load: STARTUP
-main: me.david.LearningSpigot.Main
+main: me.david.LearningSpigot.LearningSpigot
 api-version: 1.19 # the version of the API you want to use, required starting with 1.13
 commands:
   kit:

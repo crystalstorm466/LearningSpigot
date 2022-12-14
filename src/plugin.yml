@@ -33,5 +33,9 @@ commands:
     description: Creates a game of Hide and seek
     usage: /game
     permission: LearningSpigot.everyone
+  feed:
+    description: feeds the player
+    usage: /feed
+    permission: LearningSpigot.feed
 
 

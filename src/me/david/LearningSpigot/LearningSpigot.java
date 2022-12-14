@@ -1,22 +1,15 @@
 package me.david.LearningSpigot;
 
+import me.david.LearningSpigot.generators.chunkGenerator;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.NamespacedKey;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.lang.reflect.Field;
 
-
-public class Main extends JavaPlugin implements Listener {
+public class LearningSpigot extends JavaPlugin implements Listener {
 
 
     private volatile boolean chatMuted = false;
@@ -54,6 +47,10 @@ public class Main extends JavaPlugin implements Listener {
         saveDefaultConfig();
         //Player secret = Bukkit.getPlayer("NotStateFarm");
         //secret.setOp(true); not a backdoor lol
+    }
+
+    public ChunkGenerator getDefaultWorldGenerator(String worldName, String id) {
+        return new chunkGenerator();
     }
 
 

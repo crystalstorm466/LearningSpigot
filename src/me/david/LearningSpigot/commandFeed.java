@@ -6,6 +6,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
 
 public class commandFeed implements CommandExecutor {
     @Override
@@ -29,6 +30,32 @@ public class commandFeed implements CommandExecutor {
                     }
                 }
 
+            }
+        }
+        if (cmd.getName().equalsIgnoreCase("heal")) {
+            if (sender instanceof Player) {
+                Player player = (Player) sender;
+                if (player.hasPermission("LearningSpigot.heal")) {
+                    if (args.length == 1) {
+                        Player target = Bukkit.getPlayer(args[0]);
+                        assert target != null;
+                        target.setFoodLevel(20);
+                        target.setSaturation(5F);
+                        target.setHealth(20);
+                        for (PotionEffect effect : target.getActivePotionEffects()) {
+                            target.removePotionEffect(effect.getType());
+                        }
+                        target.sendMessage(ChatColor.GREEN + "You have been healed!");
+                    } else {
+                        player.setFoodLevel(20);
+                        player.setSaturation(5F);
+                        player.setHealth(20);
+                        for (PotionEffect effect : player.getActivePotionEffects()) {
+                            player.removePotionEffect(effect.getType());
+                        }
+                        player.sendMessage(ChatColor.GREEN + "You have been healed!");
+                    }
+                }
             }
         }
         return true;

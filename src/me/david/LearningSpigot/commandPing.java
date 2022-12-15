@@ -18,7 +18,7 @@ public class commandPing implements CommandExecutor {
                 if (args.length == 0) {
                     Player player = (Player) sender;
                     String playerName = player.getName();
-                    player.sendMessage(ChatColor.GREEN + "[Learning Spigot ] Your ping is " + Bukkit.getPlayer(playerName).getPing());
+                    player.sendMessage(ChatColor.GREEN + "[Learning Spigot] Your ping is " + Bukkit.getPlayer(playerName).getPing());
                     return true;
                 } else if (args.length == 1) {
                     Player player = (Player) sender;

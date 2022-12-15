@@ -37,5 +37,9 @@ commands:
     description: feeds the player
     usage: /feed
     permission: LearningSpigot.feed
+  heal:
+    description: heals the player
+    usage: /heal
+    permission: LearningSpigot.heal
 
 

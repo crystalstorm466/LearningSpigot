@@ -7,6 +7,7 @@ Current Status: Works
 Commands:
  
     /feed
+    /heal
     /fly
     /game
     /invsee

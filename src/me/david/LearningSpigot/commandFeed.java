@@ -19,10 +19,13 @@ public class commandFeed implements CommandExecutor {
                 if (player.hasPermission("LearningSpigot.feed")) {
                     if (args.length == 1) {
                         Player target = Bukkit.getPlayer(args[0]);
-                        assert target != null;
-                        target.setFoodLevel(20);
-                        target.setSaturation(5F);
-                        target.sendMessage(ChatColor.GREEN + "You have been fed!");
+                        if (!(target == null)) {
+                            target.setFoodLevel(20);
+                            target.setSaturation(5F);
+                            target.sendMessage(ChatColor.GREEN + "You have been fed!");
+                        } else {
+                            player.sendMessage(ChatColor.RED + "This player can not be found!");
+                        }
                     } else {
                         player.setFoodLevel(20);
                         player.setSaturation(5F);
@@ -38,14 +41,17 @@ public class commandFeed implements CommandExecutor {
                 if (player.hasPermission("LearningSpigot.heal")) {
                     if (args.length == 1) {
                         Player target = Bukkit.getPlayer(args[0]);
-                        assert target != null;
-                        target.setFoodLevel(20);
-                        target.setSaturation(5F);
-                        target.setHealth(20);
-                        for (PotionEffect effect : target.getActivePotionEffects()) {
-                            target.removePotionEffect(effect.getType());
+                        if (!(target == null)) {
+                            target.setFoodLevel(20);
+                            target.setSaturation(5F);
+                            target.setHealth(20);
+                            for (PotionEffect effect : target.getActivePotionEffects()) {
+                                target.removePotionEffect(effect.getType());
+                            }
+                            target.sendMessage(ChatColor.GREEN + "You have been healed!");
+                        } else {
+                            player.sendMessage(ChatColor.RED + "That player does not exist!");
                         }
-                        target.sendMessage(ChatColor.GREEN + "You have been healed!");
                     } else {
                         player.setFoodLevel(20);
                         player.setSaturation(5F);

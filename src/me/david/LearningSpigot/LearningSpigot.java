@@ -11,18 +11,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class LearningSpigot extends JavaPlugin implements Listener {
 
-
-    private volatile boolean chatMuted = false;
-
-
-    public boolean isChatMuted() {
-        return chatMuted;
-    }
-
-    public void setChatMuted(boolean chatMuted) {
-        this.chatMuted = chatMuted;
-    }
-
     @Override
     public void onEnable() {
         new updatesChecker(this, 1).getVersion(version -> {

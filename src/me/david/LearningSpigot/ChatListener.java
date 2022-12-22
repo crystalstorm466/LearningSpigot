@@ -18,6 +18,7 @@ public class ChatListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerChat(AsyncPlayerChatEvent event) {
 
+
         String swearWords[] = new String[13];
         swearWords[0] = "heck";
         swearWords[1] = "hell";
@@ -33,15 +34,16 @@ public class ChatListener implements Listener {
 
         Player player = event.getPlayer();
         String message = event.getMessage();
+        message = message.toLowerCase();
+        if (message.contains("classic") || message.contains("night") ||
+                message.contains("nighttime")) { //clbutic problems be like
+            event.setCancelled(false);
+        }
+
         for (int i = 0; i < swearWords.length; i++) {
 
-            message = message.toLowerCase();
             if (message.contains(swearWords[i])) {
-                if (message.contains("classic") || message.contains("night") ||
-                 message.contains("nighttime")) { //clbutic problems be like
-                    event.setCancelled(false);
-                    break;
-                }
+
                 event.setCancelled(true);
                 player.sendMessage(ChatColor.RED + "Your message was blocked because you swore.");
 

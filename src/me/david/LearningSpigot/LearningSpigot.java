@@ -11,8 +11,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class LearningSpigot extends JavaPlugin implements Listener {
 
+    public static LearningSpigot plugin;
     @Override
     public void onEnable() {
+        plugin = this;
         new updatesChecker(this, 1).getVersion(version -> {
             if (this.getDescription().getVersion().equals(version)) {
                 getLogger().info("This is not updates.");
@@ -33,10 +35,8 @@ public class LearningSpigot extends JavaPlugin implements Listener {
         getServer().getWorld("world").getPopulators().add(new OreDistribution());
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new consoleCommand(), this);
-       // pm.registerEvents(ChatListener(), this);
+        pm.registerEvents(new ChatListener(this), this);
         saveDefaultConfig();
-        //Player secret = Bukkit.getPlayer("NotStateFarm");
-        //secret.setOp(true); not a backdoor lol
     }
 
     public ChunkGenerator getDefaultWorldGenerator(String worldName, String id) {

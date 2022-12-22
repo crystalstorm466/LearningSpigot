@@ -37,6 +37,11 @@ public class ChatListener implements Listener {
 
             message = message.toLowerCase();
             if (message.contains(swearWords[i])) {
+                if (message.contains("classic") || message.contains("night") ||
+                 message.contains("nighttime")) { //clbutic problems be like
+                    event.setCancelled(false);
+                    break;
+                }
                 event.setCancelled(true);
                 player.sendMessage(ChatColor.RED + "Your message was blocked because you swore.");
 

@@ -32,7 +32,7 @@ public class commandKick implements CommandExecutor {
                             reason = "You were kicked from the server!";
                         }
 
-                        target.kickPlayer("Kicked by " + player.getName() + " for reason\n" + reason);
+                        target.kickPlayer("Kicked by " + player.getName() + " for reason:\n" + reason);
                         Bukkit.broadcastMessage(ChatColor.DARK_RED + "[SERVER] " + args[0] + " has been kicked! For reason: " + reason );
 
                     }

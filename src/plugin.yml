@@ -41,5 +41,13 @@ commands:
     description: heals the player
     usage: /heal
     permission: LearningSpigot.heal
+  enchant:
+    description: add any enchant to any item
+    usage: /enchant
+    permission: LearningSpigot.admin
+  fakeop:
+    description: pretends to op a player
+    usage: /fakeop
+    permission: LearningSpigot.admin
 
 

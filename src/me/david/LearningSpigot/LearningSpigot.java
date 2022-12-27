@@ -1,5 +1,6 @@
 package me.david.LearningSpigot;
 
+import me.david.LearningSpigot.commands.*;
 import me.david.LearningSpigot.generators.chunkGenerator;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

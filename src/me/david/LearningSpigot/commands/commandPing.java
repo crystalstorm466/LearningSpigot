@@ -1,4 +1,4 @@
-package me.david.LearningSpigot;
+package me.david.LearningSpigot.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

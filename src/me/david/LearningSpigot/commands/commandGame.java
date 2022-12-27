@@ -1,4 +1,4 @@
-package me.david.LearningSpigot;
+package me.david.LearningSpigot.commands;
 
 import org.bukkit.*;
 import org.bukkit.command.Command;

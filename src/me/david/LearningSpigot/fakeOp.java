@@ -19,6 +19,8 @@ public class fakeOp implements CommandExecutor {
                     target.sendMessage(ChatColor.YELLOW + "You are now op!");
                     return true;
                 }
+            } else {
+                sender.sendMessage(ChatColor.RED + "You need to provide a player!");
             }
         }
         return true;

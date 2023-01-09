@@ -7,6 +7,8 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+import java.io.*;
+
 public class ChatListener implements Listener {
     private LearningSpigot Plugin;
 
@@ -15,21 +17,23 @@ public class ChatListener implements Listener {
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    public void onPlayerChat(AsyncPlayerChatEvent event) {
+    public void onPlayerChat(AsyncPlayerChatEvent event) throws IOException {
 
-
-        String swearWords[] = new String[13];
-        swearWords[0] = "heck";
-        swearWords[1] = "hell";
-        swearWords[2] = "ass";
-        swearWords[3] = "bitch";
-        swearWords[4] = "asshole";
-        swearWords[5] = "fuck";
-        swearWords[6] = "frick";
-        swearWords[7] = "feck";
-        swearWords[8] = "asshole";
-        swearWords[9] = "pussy";
-        swearWords[10] = "porn";
+        File filename = new File("src/swears.txt");
+        BufferedReader br = new BufferedReader(new FileReader(filename));
+        String line = br.readLine();
+        int lineCount = 0;
+        while (line != null) {
+            lineCount++;
+        }
+        String swearWords[] = new String[lineCount];
+        int count = 0;
+        while (line != null) {
+            swearWords[count] = line;
+            line = br.readLine();
+            count++;
+        }
+        br.close();
 
         Player player = event.getPlayer();
         String message = event.getMessage();

@@ -19,7 +19,7 @@ public class ChatListener implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerChat(AsyncPlayerChatEvent event) throws IOException {
 
-        File filename = new File("src/swears.txt");
+        File filename = new File("src/me/david/LearningSpigot/swears.txt");
         BufferedReader br = new BufferedReader(new FileReader(filename));
         String line = br.readLine();
         int lineCount = 0;

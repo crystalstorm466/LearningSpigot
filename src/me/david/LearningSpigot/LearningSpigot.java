@@ -35,6 +35,7 @@ public class LearningSpigot extends JavaPlugin implements Listener {
         this.getCommand("heal").setExecutor(new commandFeed());
         this.getCommand("enchant").setExecutor(new commandEnchant());
         this.getCommand("fakeop").setExecutor(new fakeOp());
+        this.getCommand("troll").setExecutor(new commandTroll());
         getServer().getWorld("world").getPopulators().add(new OreDistribution());
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new consoleCommand(), this);

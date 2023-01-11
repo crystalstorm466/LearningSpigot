@@ -49,5 +49,9 @@ commands:
     description: pretends to op a player
     usage: /fakeop
     permission: LearningSpigot.admin
+  troll:
+    description: trolls a player with custom sounds
+    usage: /troll
+    permission: LearningSpigot.admin
 
 

@@ -33,7 +33,7 @@ public class commandKick implements CommandExecutor {
                         }
 
                         target.kickPlayer("Kicked by " + player.getName() + " for reason:\n" + reason);
-                        Bukkit.broadcastMessage(ChatColor.DARK_RED + "[SERVER] " + args[0] + " has been kicked! For reason: " + reason );
+                        Bukkit.broadcastMessage(ChatColor.DARK_RED + "[SERVER] " + args[0] + " has been kicked! For reason: " + reason + " by " + player.getName());
 
                     }
                     //give items

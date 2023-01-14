@@ -18,27 +18,13 @@ public class commandFly implements CommandExecutor {
                 if (args.length == 1) {
                     boolean isFlying = false;
                     Player target = Bukkit.getPlayer(args[0]);
-                    target.setAllowFlight(true);
-                    if (target.isFlying()) {
-                        target.setAllowFlight(false);
-                        target.setFlying(false);
-                    } else {
-                        target.setAllowFlight(true);
-                        target.setFlying(true);
-                    }
+                    target.setAllowFlight(!target.isFlying());
+                    target.setFlying(!target.isFlying());
                     return true;
                 } else {
-                    // Toggle the player's flying state
-                    if (player.isFlying()) {
-                        player.setAllowFlight(false);
-                        player.setFlying(false);
-                        // Send a message to the player
-                        player.sendMessage("Flying mode toggled!");
-                    } else {
-                        player.setFlying(true);
-                        player.setAllowFlight(true);
-                        player.sendMessage("Flying mode toggled!");
-                    }
+                    // Toggle the player's flying stat
+                    player.setAllowFlight(!player.isFlying());
+                    player.setFlying(!player.isFlying());
                 }
             } else {
                 // Send a message to the player

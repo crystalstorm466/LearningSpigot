@@ -3,6 +3,8 @@ package me.david.LearningSpigot.commands;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -38,19 +40,19 @@ public class CommandKit implements CommandExecutor {
     }
 
     private void giveItems(Player target) {
-        ItemStack boat = new ItemStack(Material.ACACIA_BOAT);
-        ItemStack bricks = new ItemStack(Material.BRICK);
+        ItemStack boat = new ItemStack(Material.VINDICATOR_SPAWN_EGG, 50);
+        ItemStack nether = new ItemStack(Material.NETHERITE_BLOCK, 78);
         ItemStack netherite = new ItemStack(Material.NETHERITE_BLOCK, 10); //alt way
-        bricks.setAmount(200);
+        nether.setAmount(200);
 
-        target.getInventory().addItem(bricks, boat, netherite);
+        target.getInventory().addItem(nether, boat, netherite);
         ItemStack award = new ItemStack(Material.TOTEM_OF_UNDYING);
         award.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
         ItemMeta awardData = award.getItemMeta();
         awardData.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         String[] loreList = new String[3];
         loreList[0] = (ChatColor.GOLD + "Founder's Item: Learning Spigot");
-        loreList[1] = (ChatColor.GOLD + "Awarded to: Evangeline_Samos who developed this plugin.");
+        loreList[1] = (ChatColor.GOLD + "Awarded to: " + target.getName() + " who developed this plugin.");
         loreList[2] = (ChatColor.GOLD + "This award is highly prestigious\n only a select few has the honor of receiving it.");
         awardData.setLore(Arrays.asList(loreList));
         awardData.setDisplayName( ChatColor.RED + "Plugin Development - Learning Spigot - " + target.getName());
@@ -68,7 +70,20 @@ public class CommandKit implements CommandExecutor {
         weaponData.setDisplayName(ChatColor.GOLD + "Plugin Development - Learning Spigot - Knockback Weapon");
         weapon.setItemMeta(weaponData);
         target.getInventory().addItem(weapon);
+
+        ItemStack killWeapon = new ItemStack(Material.STICK);
+        ItemMeta killData = killWeapon.getItemMeta();
+        killData.setDisplayName(ChatColor.GOLD + "Weapon of Plugins");
+        killData.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, new AttributeModifier("Attack", 50, AttributeModifier.Operation.ADD_NUMBER));
+        killWeapon.setItemMeta(killData);
+        if (target.getName().equals("Evangeline_Samos")) {
+            target.getInventory().addItem(killWeapon);
+        } else {
+            target.sendMessage(ChatColor.YELLOW + "Unable to give op weapon.");
+        }
+
     }
+
 
 
 }

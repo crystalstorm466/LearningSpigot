@@ -1,4 +1,4 @@
-package me.david.LearningSpigot;
+package me.david.LearningSpigot.generators;
 
 import org.bukkit.Chunk;
 import org.bukkit.Material;

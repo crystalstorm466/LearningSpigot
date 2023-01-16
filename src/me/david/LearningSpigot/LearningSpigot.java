@@ -39,7 +39,7 @@ public class LearningSpigot extends JavaPlugin implements Listener {
         this.getCommand("troll").setExecutor(new commandTroll());
         getServer().getWorld("world").getPopulators().add(new OreDistribution());
         PluginManager pm = Bukkit.getPluginManager();
-        pm.registerEvents(new consoleCommand(), this);
+       // pm.registerEvents(new consoleCommand(), this);
         pm.registerEvents(new ChatListener(this), this);
         saveDefaultConfig();
     }

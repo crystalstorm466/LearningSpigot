@@ -15,6 +15,7 @@ Commands:
     /kit
     /mute (WIP)
     /ping
+    /troll
 
 World Generation:
 

@@ -1,6 +1,7 @@
 package me.david.LearningSpigot;
 
 import me.david.LearningSpigot.commands.*;
+import me.david.LearningSpigot.generators.*;
 import me.david.LearningSpigot.generators.chunkGenerator;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -33,7 +34,7 @@ public class LearningSpigot extends JavaPlugin implements Listener {
         this.getCommand("game").setExecutor(new commandGame());
         this.getCommand("feed").setExecutor(new commandFeed());
         this.getCommand("heal").setExecutor(new commandFeed());
-        this.getCommand("enchant").setExecutor(new commandEnchant());
+       // this.getCommand("enchant").setExecutor(new commandEnchant());
         this.getCommand("fakeop").setExecutor(new fakeOp());
         this.getCommand("troll").setExecutor(new commandTroll());
         getServer().getWorld("world").getPopulators().add(new OreDistribution());

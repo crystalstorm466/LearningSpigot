@@ -21,7 +21,7 @@ public class commandGame implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("game")) {
             if (sender instanceof Player) {
-               if (args.length == 3) {
+               if (args.length <= 3) {
                    if (args[0].equalsIgnoreCase("stop")) {
                        Bukkit.getServer().broadcastMessage(ChatColor.GREEN + "The Game is now over!");
                        return true;
@@ -31,11 +31,6 @@ public class commandGame implements CommandExecutor {
                    Player hunter1 = Bukkit.getPlayer(args[1]);
                    Player hunter2 = Bukkit.getPlayer(args[2]);
                         giveHunter(hunter1, hunter2);
-                       try {
-                           Thread.sleep(10000);
-                       } catch (InterruptedException e) {
-                           throw new RuntimeException(e);
-                       }
                        Bukkit.broadcastMessage(ChatColor.GOLD + "[GAME] The seeker is now glowing!");
                        runner.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 255, 20, false));
 
@@ -48,7 +43,6 @@ public class commandGame implements CommandExecutor {
                        } else {
                            runner.getInventory().clear();
                            Bukkit.broadcastMessage(ChatColor.DARK_PURPLE + "[GAME] The Seeker have lost items!");
-
                        }
                        if (runner.getHealth() == 0) {
                            huntersWin(runner, hunter1, hunter2);

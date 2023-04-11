@@ -16,6 +16,8 @@ Commands:
     /mute (WIP)
     /ping
     /troll
+    /music
+    /customitem
 
 World Generation:
 

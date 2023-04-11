@@ -1,5 +1,6 @@
-package me.david.LearningSpigot;
+package me.david.LearningSpigot.Listeners;
 
+import me.david.LearningSpigot.LearningSpigot;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

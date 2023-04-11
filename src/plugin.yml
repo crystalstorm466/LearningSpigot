@@ -53,5 +53,17 @@ commands:
     description: trolls a player with custom sounds
     usage: /troll
     permission: LearningSpigot.admin
+  pvpgame:
+    description: Starts a game of PvP
+    usage: /pvpgame
+    permission: LearningSpigot.admin
+  customitem:
+    description: Grants custom items to a player
+    usage: /customitem
+    permission: LearningSpigot.*
+  music:
+    description: Plays music disks to players
+    usage: /music
+    permission: LearningSpigot.*;
 
 

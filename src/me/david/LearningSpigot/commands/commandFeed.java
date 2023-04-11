@@ -2,6 +2,7 @@ package me.david.LearningSpigot.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -44,7 +45,8 @@ public class commandFeed implements CommandExecutor {
                         if (!(target == null)) {
                             target.setFoodLevel(20);
                             target.setSaturation(5F);
-                            target.setHealth(20);
+                            double maxHealth = target.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
+                            target.setHealth(maxHealth);
                             for (PotionEffect effect : target.getActivePotionEffects()) {
                                 target.removePotionEffect(effect.getType());
                             }
@@ -53,9 +55,10 @@ public class commandFeed implements CommandExecutor {
                             player.sendMessage(ChatColor.RED + "That player does not exist!");
                         }
                     } else {
+                        double maxHealth = player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
+                        player.setHealth(maxHealth);
                         player.setFoodLevel(20);
                         player.setSaturation(5F);
-                        player.setHealth(20);
                         for (PotionEffect effect : player.getActivePotionEffects()) {
                             player.removePotionEffect(effect.getType());
                         }

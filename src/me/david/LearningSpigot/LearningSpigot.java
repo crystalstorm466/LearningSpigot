@@ -66,6 +66,7 @@ public class LearningSpigot extends JavaPlugin implements Listener {
         //tab completion stuff
         this.getCommand("troll").setTabCompleter(new TabCompleter());
         this.getCommand("music").setTabCompleter(new TabCompleter());
+        this.getCommand("customitem").setTabCompleter(new TabCompleter());
         getServer().getWorld("world").getPopulators().add(new OreDistribution());
         PluginManager pm = Bukkit.getPluginManager();
        // pm.registerEvents(new consoleCommand(), this);

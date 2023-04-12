@@ -99,6 +99,35 @@ public class TabCompleter implements org.bukkit.command.TabCompleter  {
                     return list;
                 }
             }
+        } else if (command.getName().equalsIgnoreCase("kit")) {
+            if ( sender instanceof Player ) {
+                if (args.length == 1) {
+                    for (Player player : Bukkit.getServer().getOnlinePlayers()) {
+                        list.add(player.getName());
+                    }
+                    Iterator<String> iter = list.iterator();
+                    while (iter.hasNext()) {
+                        String play = iter.next();
+                        if (!play.toLowerCase().startsWith(args[0].toLowerCase())) {
+                            iter.remove();
+                        }
+                    }
+                    Collections.sort(list);
+                    return list;
+                } else if ( args.length == 2 ) {
+                    List<String> items = Arrays.asList("regular", "op");
+                    Iterator<String> iter = items.iterator();
+                    while (iter.hasNext()) {
+                        String item = iter.next();
+                        if (!item.toLowerCase().startsWith(args[1].toLowerCase())) {
+                            iter.remove();
+                        }
+                        list.addAll(items);
+                    }
+                    Collections.sort(list);
+                    return list;
+                }
+            }
         }
         return null;
     }

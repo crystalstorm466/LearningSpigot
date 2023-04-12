@@ -1,6 +1,6 @@
 My first plugin
 
-Running: 1.19.2 Spigot
+Running: 1.19.4 Spigot
 
 Current Status: Works
 

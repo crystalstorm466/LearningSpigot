@@ -1,5 +1,6 @@
 package me.david.LearningSpigot;
 
+import com.google.gson.*;
 import me.david.LearningSpigot.Listeners.*;
 import me.david.LearningSpigot.commands.*;
 import me.david.LearningSpigot.generators.*;
@@ -17,21 +18,35 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
+import org.w3c.dom.html.HTMLTableCaptionElement;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class LearningSpigot extends JavaPlugin implements Listener {
     public static LearningSpigot plugin;
+    private static final String GITHUB_API_URL = "https://api.github.com/repos/{owner}/{repo}/releases/latest";
+    private static final String OWNER = "crystalstorm466";
+    private static final String repo = "LearningSpigot";
+    private String currentVersion = getDescription().getVersion();
+    private boolean updateAvailabe = false;
     @Override
     public void onEnable() {
         plugin = this;
-        new updatesChecker(this, 1).getVersion(version -> {
-            if (this.getDescription().getVersion().equals(version)) {
-                getLogger().info("This is not updates.");
-            } else {
-                getLogger().info("This is a new update");
-            }
-        });
+        updatesChecker updatesChecker = new updatesChecker();
+
+        getServer().getScheduler().runTaskAsynchronously(this, updatesChecker::checkForUpdates);
+
         Bukkit.getLogger().info(ChatColor.GREEN + "Enabled " + this.getName());
+        //command executors
         this.getCommand("kit").setExecutor(new CommandKit());
         this.getCommand("kick").setExecutor(new commandKick());
         this.getCommand("fly").setExecutor(new commandFly());
@@ -47,6 +62,10 @@ public class LearningSpigot extends JavaPlugin implements Listener {
         this.getCommand("pvpgame").setExecutor(new PvPGame());
         this.getCommand("customitem").setExecutor(new commandCustomItem());
         this.getCommand("music").setExecutor(new commandMusic());
+
+        //tab completion stuff
+        this.getCommand("troll").setTabCompleter(new TabCompleter());
+        this.getCommand("music").setTabCompleter(new TabCompleter());
         getServer().getWorld("world").getPopulators().add(new OreDistribution());
         PluginManager pm = Bukkit.getPluginManager();
        // pm.registerEvents(new consoleCommand(), this);

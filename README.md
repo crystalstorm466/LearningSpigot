@@ -21,4 +21,4 @@ Commands:
 
 World Generation:
 
-Built-in Update Checker (Works but will currently )
+Built-in Update Checker (Now Calls GitHub not Spigot!)

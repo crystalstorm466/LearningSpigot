@@ -1,9 +1,6 @@
 package me.david.LearningSpigot.commands;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -19,8 +16,7 @@ public class commandTroll implements CommandExecutor {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
                 if (args.length <= 2) {
-                    String option = args[1].toLowerCase();
-                    switch(option) {
+                    switch(args[1].toLowerCase()) {
                         case "smite":
                             Player target = Bukkit.getPlayer(args[0]);
                             assert target != null;
@@ -34,6 +30,11 @@ public class commandTroll implements CommandExecutor {
                             throwTarget.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 10, 10));
                             throwTarget.sendMessage(ChatColor.YELLOW + "You have been thrown!");
                             break;
+                        case "scream":
+                            Player screamTarget = Bukkit.getPlayer(args[0]);
+                            assert screamTarget != null;
+                            screamTarget.playSound(screamTarget.getLocation(), Sound.ENTITY_GHAST_SCREAM, SoundCategory.VOICE,3.0F, 0.5F);
+                            screamTarget.playSound(screamTarget.getLocation(), Sound.ENTITY_CAT_HISS, SoundCategory.VOICE,3.0F, 0.5F);
                     }
 
                 } else {

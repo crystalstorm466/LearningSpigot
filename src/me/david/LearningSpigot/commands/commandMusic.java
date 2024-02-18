@@ -29,6 +29,7 @@ public class commandMusic implements CommandExecutor {
             return true;
         }
         Player target = Bukkit.getPlayer(args[0]);
+        target.stopAllSounds();
         switch(args[1].toLowerCase()) {
             case "13":
                 target.playSound(target.getLocation(), Sound.MUSIC_DISC_13, SoundCategory.RECORDS, 1.0f, 1.0f);

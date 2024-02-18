@@ -1,7 +1,6 @@
 My first plugin
 
-Running: 1.19.4 Spigot
-
+Running: 1.20.4 Spigot
 Current Status: Works
 
 Commands:
@@ -18,6 +17,7 @@ Commands:
     /troll
     /music
     /customitem
+    /enchant
 
 World Generation:
 

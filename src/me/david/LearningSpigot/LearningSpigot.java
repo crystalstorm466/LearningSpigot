@@ -56,10 +56,10 @@ public class LearningSpigot extends JavaPlugin implements Listener {
         this.getCommand("game").setExecutor(new commandGame());
         this.getCommand("feed").setExecutor(new commandFeed());
         this.getCommand("heal").setExecutor(new commandFeed());
-       // this.getCommand("enchant").setExecutor(new commandEnchant());
+        this.getCommand("enchant").setExecutor(new commandEnchant());
         this.getCommand("fakeop").setExecutor(new fakeOp());
         this.getCommand("troll").setExecutor(new commandTroll());
-        this.getCommand("pvpgame").setExecutor(new PvPGame());
+       // this.getCommand("pvpgame").setExecutor(new PvPGame());
         this.getCommand("customitem").setExecutor(new commandCustomItem());
         this.getCommand("music").setExecutor(new commandMusic());
 
@@ -72,7 +72,7 @@ public class LearningSpigot extends JavaPlugin implements Listener {
         PluginManager pm = Bukkit.getPluginManager();
        // pm.registerEvents(new consoleCommand(), this);
         pm.registerEvents(new ChatListener(this), this);
-        pm.registerEvents(new customScoreBoard(), this);
+      //  pm.registerEvents(new customScoreBoard(onPlayerDeath), this);
         pm.registerEvents(new flyingListener(), this);
         saveDefaultConfig();
     }

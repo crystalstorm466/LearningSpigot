@@ -14,6 +14,7 @@ Commands:
     /kit
     /mute (WIP)
     /ping
+    /tps
     /troll
     /music
     /customitem

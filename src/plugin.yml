@@ -1,5 +1,5 @@
 name: LearningSpigot # the plugins name as it should appear in the plugin list /pl
-version: v0.9.2 # the plugin's version
+version: v0.9.3 # the plugin's version
 author: David Holland
 load: STARTUP
 main: me.david.LearningSpigot.LearningSpigot

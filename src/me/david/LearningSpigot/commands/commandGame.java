@@ -21,15 +21,26 @@ public class commandGame implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("game")) {
             if (sender instanceof Player) {
+                if (args.length == 0) {
+                    sender.sendMessage(ChatColor.RED + "[Learning Spigot] Not enough arguments! </game <runner> <hunter1> hunter2>>");
+                    return true;
+                }
+                if (args[0].equalsIgnoreCase("stop")) {
+                    Bukkit.getServer().broadcastMessage(ChatColor.GREEN + "The Game is now over!");
+                    return true;
+                }
+
                if (args.length <= 3) {
-                   if (args[0].equalsIgnoreCase("stop")) {
-                       Bukkit.getServer().broadcastMessage(ChatColor.GREEN + "The Game is now over!");
-                       return true;
-                   }
+
                    Player player = (Player) sender;
                    Player runner = Bukkit.getPlayer(args[0]);
                    Player hunter1 = Bukkit.getPlayer(args[1]);
                    Player hunter2 = Bukkit.getPlayer(args[2]);
+
+                   if (runner == null || hunter1 == null || hunter2 == null) {
+                          player.sendMessage(ChatColor.RED + "[Learning Spigot] One or more players are not online!");
+                          return true;
+                   }
                         giveHunter(hunter1, hunter2);
                        Bukkit.broadcastMessage(ChatColor.GOLD + "[GAME] The seeker is now glowing!");
                        runner.addPotionEffect(new PotionEffect(PotionEffectType.GLOWING, 255, 20, false));
